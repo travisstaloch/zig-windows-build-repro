@@ -1,0 +1,13 @@
+name: CI
+on: [push, pull_request]
+
+jobs:
+  build-windows-msvc:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: goto-bus-stop/setup-zig@v1
+        with:
+          version: master
+      - uses: seanmiddleditch/gha-setup-vsdevenv@master
+      - run: zig build -Dtarget=x86_64-windows-msvc  
